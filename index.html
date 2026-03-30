@@ -767,7 +767,8 @@
 
                     // 3. 插入附件记录
                     if (newAttachments.length > 0) {
-                        const { data: attData } = await supabaseClient.from('attachments').insert(newAttachments).select();
+                        const { data: attData, error: attError } = await supabaseClient.from('attachments').insert(newAttachments).select();
+                        if (attError) { alert('附件记录失败: ' + attError.message); }
                         if (attData) setAttachments([...attachments, ...attData]);
                     }
 
