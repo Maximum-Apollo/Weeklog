@@ -521,7 +521,7 @@
                             <span>📅 {week.date_range}</span>
                             <span>👍 {weekLikes.length}</span>
                             <span>💬 {weekComments.length}</span>
-                            {week.tags && week.tags.map((tag, idx) => (
+                            {week.tags && (Array.isArray(week.tags) ? week.tags : week.tags.split(',').map(t => t.trim()).filter(t => t)).map((tag, idx) => (
                                 <span key={idx} className="tag">#{tag}</span>
                             ))}
                         </div>
